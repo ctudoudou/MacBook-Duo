@@ -160,7 +160,7 @@ final class BlurOverlay {
     // Background opacity: 0.001 gets rounded to 0 at 8-bit depth, making the window fully
     // transparent — and with the current window setup the system then seems to skip background
     // blur entirely. Use the smallest nonzero value instead.
-    var baseAlpha: CGFloat = 1.0 / 255 { didSet { updateBackground() } }
+    var baseAlpha: CGFloat = 3.0 / 255 { didSet { updateBackground() } }
 
     private func updateBackground() {
         window?.backgroundColor = debugTint
@@ -598,7 +598,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             let item = NSMenuItem(title: "\(v)/255", action: #selector(pickBaseAlpha(_:)), keyEquivalent: "")
             item.target = self
             item.tag = i
-            item.state = i == 0 ? .on : .off
+            item.state = v == 3 ? .on : .off
             baseMenu.addItem(item)
         }
         let baseItem = NSMenuItem(title: "Debug: background opacity", action: nil, keyEquivalent: "")
